@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calculadora básica</title>
+</head>
+<body>
+	<h2>Calculadora básica</h2>
+
+	<input type="text" id="display" readonly>
+
+	<table>
+		<tr>
+			<td><button onclick="agregar('7')">7</button></td>
+			<td><button onclick="agregar('8')">8</button></td>
+			<td><button onclick="agregar('9')">9</button></td>
+			<td><button onclick="borrar()">C</button></td>
+		</tr>
+		<tr>
+			<td><button onclick="agregar('4')">4</button></td>
+			<td><button onclick="agregar('5')">5</button></td>
+			<td><button onclick="agregar('6')">6</button></td>
+			<td><button onclick="operar('+')">+</button></td>
+		</tr>
+		<tr>
+			<td><button onclick="agregar('1')">1</button></td>
+			<td><button onclick="agregar('2')">2</button></td>
+			<td><button onclick="agregar('3')">3</button></td>
+			<td><button onclick="operar('-')">-</button></td>
+		</tr>
+		<tr>
+			<td><button onclick="agregar('0')">0</button></td>
+			<td><button onclick="agregar('.')">.</button></td>
+			<td><button onclick="operar('*')">*</button></td>
+			<td><button onclick="operar('/')">/</button></td>
+		</tr>
+		<tr>
+			<td><button onclick="calcular()">=</button></td>
+		</tr>
+	</table>
+
+	<script>
+		let operando1 = 0;
+		let operando2 = 0;
+		let operacion = '';
+
+		function agregar(valor) {
+			document.getElementById('display').value += valor;
+		}
+
+		function borrar() {
+			document.getElementById('display').value = '';
+			operando1 = 0;
+			operando2 = 0;
+			operacion = '';
+		}
+
+		function operar(signo) {
+			operando1 = parseFloat(document.getElementById('display').value);
+			operacion = signo;
+			document.getElementById('display').value = '';
+		}
+
+		function calcular() {
+			operando2 = parseFloat(document.getElementById('display').value);
+			let resultado = 0;
+			switch (operacion) {
+				case '+':
+					resultado = operando1 + operando2;
+					break;
+				case '-':
+					resultado = operando1 - operando2;
+					break;
+				case '*':
+					resultado = operando1 * operando2;
+					break;
+				case '/':
+					resultado = operando1 / operando2;
+					break;
+			}
+			document.getElementById('display').value = resultado;
+		}
+	</script>
+</body>
+</html>
